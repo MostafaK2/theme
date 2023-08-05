@@ -1,0 +1,56 @@
+<header>
+	<div style = "background-color: black; height:30px">rotating stuff</div>
+
+	<div>
+		<div class="topbar">
+			<div style="cursor:pointer;">
+				<img src="{{'logo.jpg' | asset_url}}" height="48px" width="117px"/>
+			</div>
+			<div class="searchbar">
+				<input class= "searchbarinput" placeholder = "FIND YOUR FAVOURATES"/>
+				<div class = "searchbardiv">
+					<img 
+						alt="searchicon" 
+						src="{{'search-icon.png' | asset_url}}" 
+						height="30px" 
+						width = "30px"
+					/>
+				</div>
+			</div>
+			<div class="signlikecart">
+				<button class="signlikecart">Sign in</button>
+				<button class="btnhead">
+					<img alt="hearticon" src="{{'heart.png' | asset_url}}" height="25px" width="25px"/>
+				</button>
+				<button class="btnhead">
+					<img alt="cart" src="{{'shoppingbag.png' | asset_url}}"/>
+				</button>
+			</div>
+		</div>
+
+		<div class="bottombar" style="
+			border-bottom: 1px solid grey;
+			padding: 10px;
+			"
+			>
+			<ul style="
+				display:flex;
+				padding: 0 50px;
+				justify-content:center;
+				align-items: center;
+				gap: 80px;
+				list-style-type: none;
+			">
+				{% for link in linklists.main-menu.links -%}
+					<li style = "
+					font-size: 18px; 
+					font-weight:500;
+					text-decoration:none;
+					">
+						{{ link.title | link_to: link.url }}
+					</li>
+				{%- endfor %}
+			</ul>
+		</div>
+	<div>
+</header>

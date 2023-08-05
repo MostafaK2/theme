@@ -1,0 +1,256 @@
+<div>
+	<link href='https://fonts.googleapis.com/css?family=Berkshire Swash' rel='stylesheet'>
+	<div class="slider">
+		{{'slider.css' | asset_url | stylesheet_tag}}
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+		<div class = "slider-content">
+			<img alt ="slider1" src="{{'slider3.png' | asset_url}}"/>
+		</div>
+		<div class="slider-content">
+			<img alt ="slider1" src="{{'slider1.png' | asset_url}}"/>
+		</div>
+		<div class = "slider-content">
+			<img alt ="slider1" src="{{'slider2.png' | asset_url}}"/>
+		</div>
+		<div class = "slider-content">
+			<img alt ="slider1" src="{{'slider4.png' | asset_url}}"/>
+		</div>
+		{% comment %} <script>
+			var time = 2000;//milliseconds
+			var index = 0;
+			var container = $(".slider");
+			var childrenCount = $(".slider-content").length;
+			function slideToNext() {
+
+				index = (index + 1) % childrenCount;
+				console.log(index);
+				container.css({
+					marginLeft: -1 * index * 100 + "%"
+				})
+			}
+			var pt = window.setInterval(function() {
+				slideToNext();
+			}, time)
+		</script> {% endcomment %}
+	</div>
+
+	<div id = "shopshipsave" style="margin-bottom: 130px;">
+		{{'shopshipsave.css' | asset_url | stylesheet_tag}}
+		{% comment %} convert id shopshipsave to flex column and add gap instead of adding margin bottom on h2 and add margin boottom to the middle div {% endcomment %}
+		<h2 style="text-align: center; margin-bottom: 50px; margin-top: 150px">Shop, Ship, Save!</h2>
+		<div style="
+			display: flex;
+			justify-content:center;
+			align-items: center;
+			gap: 80px;">
+			<div style="
+				align-items: center;
+				display:flex;
+				flex-direction: column;
+			">
+				<img alt="freeshipping" src = "{{'truck.png' | asset_url}}"/>
+				<h2>Free Shipping</h2>
+			</div>
+			<div style="
+				align-items: center;
+				display:flex;
+				flex-direction: column;
+			">
+				<img alt="Easy Return" src="{{'truck.png' | asset_url}}"/>
+				<h2>Easy Return</h2>
+			</div>
+			<div style="
+				align-items: center;
+				display:flex;
+				flex-direction: column;
+			">
+				<img alt="Easy Return" src="{{'truck.png' | asset_url}}"/>
+				<h2>Global Shipping</h2>
+			</div>
+		</div>
+	</div>
+	<div class="trending">
+		<style>
+			.container-t{
+				display: flex; 
+				margin:auto;
+				height: 700px;
+				padding: 0 100px 0 100px;
+				gap:10px;
+			}
+			.header{
+				text-align: center;
+				margin-bottom: 100px;
+			}
+			.container-child-t{
+				height: fit-content;
+				width: 25%;
+				cursor:pointer;
+				text-align: center;
+				justify-content: center;
+				gap:0;
+			}
+			.container-child-t img{
+				height:450px;
+				width:100%;
+			}
+
+			.container-child-t p{
+				font-size: 14px;
+				margin-top: 1rem;
+				margin-bottom: 0px;
+				weight: bold;
+				text-decoration:none;
+
+			}
+			.underline{
+				text-decoration:none;
+			}
+			.underline:hover{
+				text-decoration: underline;
+			}
+			
+		</style>
+		<h2 class = "header">Trending Now</h2>
+		{% comment %} add  a filter to this for loop to only select 4 elements {% endcomment %}
+		<div class="container-t">
+			{% for product in collections['Trending'].products %}
+				<a href = "{{product.url}}">
+					<div class = "container-child-t">
+						<img src = "{{product.featured_image | image_url}}"/>
+						<p>{{- product.title | link_to: product.url }}</p> 
+						<p style="color:#BD6792;">Some Collections</p>
+						<div style="display: flex; gap: 15px; justify-content: center;">
+							<p style="color:#C6C6C6; text-decoration: Line-through">{{product.compare_at_price | money}} USD</p>
+							<p>{{product.price | money}} USD</p>
+						</div>
+					</div>
+				</a>
+					
+			{% endfor %}
+		</div>
+		
+
+	</div>
+	<div class="shop-by-vendor" >
+		<style>
+			.vendors{
+				display: flex; 
+				margin:auto;
+				height: 450px;
+				padding: 0 100px 0 100px;
+				gap:15px;
+			}
+			.ven{
+				height:100%; 
+				width: 25%;
+				background-image: url("{{'tulipcollections.png' | asset_url}}");
+				background-size: cover;
+				display: flex;
+				flex-direction: column;
+				text-align: center;	
+			}
+			.ven:hover{
+				filter: brightness(80%);
+			}
+			.textheader{
+				font-family: "Berkshire Swash", cursive;
+				color: white;
+				margin-bottom: 0;
+				font-size: 2.5vw;
+			}
+			.button{
+				margin-top: 20px;
+				border-radius: 10px;
+				width: 150px;
+				height: 60px;
+				margin-left:auto;
+				margin-right:auto;
+			}
+			.header{
+				text-align: center;
+				margin-bottom: 100px;
+			}
+			
+		</style>
+		<h2 class = "header">Shop By Vendor<h2>
+		<div class = "vendors">
+			<div class="ven">
+				<div style="margin-top: 50%">
+					<p class="textheader">Tulip</p>
+					<p class="textheader">Collections</p>
+					<button class="button">Shop Now</button>
+				</div>
+			</div> 
+			<div class="ven"></div>
+			<div class="ven"></div>
+			<div class="ven"></div>
+		</div>
+	</div>
+	<div class="new-arrival">
+	</div>
+	<div class="shop-by-collection">
+	</div>
+	<div class="eid-season">
+		<style>
+			.container-eid{
+				max-width: 1440px;
+				display:flex;
+				padding: 0 100px 0 100px;
+				margin:auto;
+				gap:30px;
+				justify-content: center;
+				
+			}
+			.container-eid-left{
+				padding-top: 150px;
+				width: 55%;
+				gap: 30px;
+
+			}
+			.container-eid-right{
+				width: 45%;
+			}
+
+			.left-child1 {
+				background-color: #feedf6;
+				text-align: center;
+				padding: 35px 0;
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
+				align-items: center;
+				margin-bottom: 20px;	
+			}
+			.left-child2{
+				display:flex;
+				height: 400px;
+				width:100%;
+				gap: 20px;
+			}
+			.res{
+				width: 50%;
+			}
+
+		</style>
+		<h2>Eid Season</h2>
+		<div class = "container-eid">
+			<div class="container-eid-left">
+				<div class="left-child1">
+					<h2>Get Ready for Eid</h2>
+					<p>Lorem Ipsum is simply 
+					dummy text of the printing and 
+					typesetting industry.</p>
+					<button>Shop Eid Collection</button>
+				</div>
+				<div class="left-child2">
+					<img class="res" src = "{{'eid1.png' | asset_url}}"/>
+					<img class="res" src = "{{'eid3.png' | asset_url}}"/>
+				</div>
+			</div>
+			<div class="container-eid-right" >
+				<img src = "{{'eid2.png' | asset_url}}"/>
+			</div>
+		</div>
+	</div>
+</div>
